@@ -1,6 +1,5 @@
-import { UserAdapter, UserMapperService } from "../../src/adapter";
-import IUserDTO from "../../src/adapter/DTO/IUserDTO";
-
+import { UserAdapter, UserMapperService } from "../../../src/adapter";
+import IUserDTO from "../../../src/adapter/DTO/IUserDTO";
 import MockUserRepository from "./mocks/mockUserRepository";
 
 let userAdapter: UserAdapter;
@@ -12,7 +11,8 @@ beforeEach(() => {
 test("Should return array of IUserDTO", async() => {
   const users: IUserDTO[] = await userAdapter.find();
 
-  expect(users).toEqual([
+  expect(users)
+  .toEqual([
     {
       id: "1",
       name: "John Doe",

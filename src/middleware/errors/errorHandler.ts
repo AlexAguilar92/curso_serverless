@@ -1,10 +1,17 @@
-import { Request, Response } from "express";
+import { formatJSONResponse } from "@libs/api-gateway";
 
-function errorHandler(err: any, req: Request, res: Response, next: (arg0: any) => void): void {
-  // tslint:disable-next-line:no-console
-  console.log("errorHandler", typeof err);
-  // next(err);
-  res.status(500).json("error");
+export const errorMiddleware = () => {
+  console.log("errorMiddleware")
+
+  const errorHandler = (request) => {
+    console.log("request", request)
+    const { error, response } = request;
+    console.log("error handler", error, response);
+
+    return formatJSONResponse({ message: "error"}, 500)
+  }
+  
+  return {
+    onError: errorHandler,
+  }
 }
-
-export default errorHandler;

@@ -50,7 +50,7 @@ export default class UserRepository implements IUserRepository {
     } catch (error) {
       throw error;
     } finally {
-      await this.iDBConnectionManager.disconnect()
+      await this.iDBConnectionManager.disconnect();
     }
   }
 

@@ -27,10 +27,8 @@ export default class UserAdapter implements IUserAdapter {
   }
 
   async findById(id: string): Promise<IUserDTO> {
-    console.log(id)
-    throw new Error("Method not implemented.");
-    // const user: IUser = await this.iUserRepository.findById(id);
-    // const userDTO: IUserDTO = this.iUserMapperService.transform(user);
-    // return userDTO;
+    const user: IUser = await this.iUserRepository.findById(id);
+    const userDTO: IUserDTO = this.iUserMapperService.transform(user);
+    return userDTO;
   }
 }

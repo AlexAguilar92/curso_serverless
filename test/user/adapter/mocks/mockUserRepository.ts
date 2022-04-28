@@ -11,6 +11,10 @@ export default class MockUserRepository implements IUserRepository {
       todos: [],
     }
   ];
+
+  public async find(): Promise<User[]> {
+    return this.users;
+  }
   
   findByName(name: string): Promise<User> {
     console.log(name)
@@ -31,9 +35,5 @@ export default class MockUserRepository implements IUserRepository {
   delete(id: string): Promise<void> {
     console.log(id)
     throw new Error("Method not implemented.");
-  }
-
-  public async find(): Promise<User[]> {
-    return this.users;
   }
 }
