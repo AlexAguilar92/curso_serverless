@@ -1,7 +1,8 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
-import { Todo, User } from "src/repository";
+import { PokemonByTrainer, Todo, Trainer, Type, User } from "src/repository";
+import Pokemon from "src/repository/entities/implementation/Pokemon";
 
 const dbConnectionHelper = new DataSource({
   host: "localhost",
@@ -14,7 +15,11 @@ const dbConnectionHelper = new DataSource({
   namingStrategy: new SnakeNamingStrategy(),
   entities: [
     User,
-    Todo
+    Todo,
+    Pokemon,
+    Type,
+    PokemonByTrainer,
+    Trainer
     // __dirname + '/../../../repository/entities/implementation/*.{js,ts}',
     // __dirname + "../../repository/entities/*.ts"
 

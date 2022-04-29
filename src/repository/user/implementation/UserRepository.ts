@@ -44,11 +44,11 @@ export default class UserRepository implements IUserRepository {
       const query: SelectQueryBuilder<User> = this.iDBConnectionManager.connection
       .getRepository(User).createQueryBuilder("user");
       query.
-      leftJoinAndSelect("user.todos", "todo");
+        leftJoinAndSelect("user.todos", "todo");
       const users: User[] = await query.getMany();
       return users;
     } catch (error) {
-      throw error;
+      throw new Error("no se pudo encontrar tal error");
     } finally {
       await this.iDBConnectionManager.disconnect();
     }
@@ -59,22 +59,21 @@ export default class UserRepository implements IUserRepository {
   }
 
   async create(user: Partial<User>): Promise<User> {
-    throw new Error("Method not implemented.");
-    // await this.iDBConnectionManager.connect();
+    await this.iDBConnectionManager.connect();
 
-    // try {
-    //   const createdUser: User = await this.iDBConnectionManager.connection
-    //   .getRepository(User).save(user);
-    //   // tslint:disable-next-line:no-console
-    //   console.log("UserRepository.create", createdUser)
-    //   return createdUser;
-    // } catch (error) {
-    //   throw error;
-    // } finally {
-    //   // tslint:disable-next-line:no-console
-    //   console.log("disconnected");
-    //   await this.iDBConnectionManager.disconnect();
-    // }
+    try {
+      const createdUser: User = await this.iDBConnectionManager.connection
+      .getRepository(User).save(user);
+      // tslint:disable-next-line:no-console
+      console.log("UserRepository.create", createdUser)
+      return createdUser;
+    } catch (error) {
+      throw error;
+    } finally {
+      // tslint:disable-next-line:no-console
+      console.log("disconnected");
+      await this.iDBConnectionManager.disconnect();
+    }
   }
 
   async update(user: User): Promise<User> {

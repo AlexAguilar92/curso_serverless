@@ -8,7 +8,7 @@ beforeEach(() => {
   userAdapter = new UserAdapter(new MockUserRepository(), new UserMapperService());
 });
 
-test("Should return array of IUserDTO", async() => {
+test("Should return array of IUserDTO", async () => {
   const users: IUserDTO[] = await userAdapter.find();
 
   expect(users)
