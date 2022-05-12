@@ -21,8 +21,26 @@ export default class UserAdapter implements IUserAdapter {
   }
 
   async find(): Promise<IUserDTO []> {
-    const users: IUser [] = await this.iUserRepository.find();
-    const usersDTO: IUserDTO [] = this.iUserMapperService.transform(users);
+    console.log('UserAdapter.find()');
+    const usersDTO: IUserDTO [] = [
+      {
+        id: '1',
+        name: 'User 1',
+        email: '',
+        status: true,
+
+      },
+      {
+        id: '2',
+        name: 'User 2',
+        email: '',
+        status: true,
+
+      }
+    ];
+    //Descomentar las siguientes lineas si se desea conectar a la db y agregar las credenciales en el archivo de dbconnectionhelper
+    // const users: IUser [] = await this.iUserRepository.find();
+    // const usersDTO: IUserDTO [] = this.iUserMapperService.transform(users);
     return usersDTO;
   }
 
